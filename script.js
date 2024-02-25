@@ -64,14 +64,35 @@ function flipCard(){
     const cardId = this.getAttribute("data-id");
     // console.log(cardId)
     this.setAttribute("src", imageArray[cardId].url)
-    cardsChoosed.push(imageArray[cardId])
+    cardsChoosed.push({...imageArray[cardId],id:cardId})
     if (cardsChoosed.length === 2){
-        checkMatch();
+        setTimeout(checkMatch, 500);
     }
 }
 
 function checkMatch(){
-    if(cardsChoosed[0].name === cardsChoosed[1].name){
-        console.log("same")
+
+    const allCards= document.querySelectorAll("img");
+    op1=cardsChoosed[0]
+    op2=cardsChoosed[1]
+    if(op1.name === op2.name){
+        // console.log("same")
+        allCards[op1.id].src="#"
+        allCards[op2.id].src="#"
+
+        marks = Math.round(marks + 100/6);
     }
+    else{
+        allCards[op1.id].src="https://static.vecteezy.com/system/resources/previews/007/126/739/non_2x/question-mark-icon-free-vector.jpg"
+        allCards[op2.id].src="https://static.vecteezy.com/system/resources/previews/007/126/739/non_2x/question-mark-icon-free-vector.jpg"
+       }
+    
+    cardsChoosed=[];
+    dispMarks();
+}
+
+function dispMarks(){
+    final=marks+"%"
+    const markH3 = document.getElementsByClassName("marks");
+    markH3.innerText=final;
 }

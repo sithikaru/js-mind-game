@@ -57,7 +57,9 @@ function createBoard() {
         card.addEventListener("click",flipCard);
     });
 }
+let marks = 0
 createBoard();
+dispMarks();
 // console.log(imageArray);
 
 function flipCard(){
@@ -71,16 +73,15 @@ function flipCard(){
 }
 
 function checkMatch(){
-
     const allCards= document.querySelectorAll("img");
     op1=cardsChoosed[0]
     op2=cardsChoosed[1]
     if(op1.name === op2.name){
         // console.log("same")
-        allCards[op1.id].src="#"
-        allCards[op2.id].src="#"
+        allCards[op1.id].src="https://icons.veryicon.com/png/o/miscellaneous/logo-design-of-lingzhuyun/icon-correct-24.png"
+        allCards[op2.id].src="https://icons.veryicon.com/png/o/miscellaneous/logo-design-of-lingzhuyun/icon-correct-24.png"
 
-        marks = Math.round(marks + 100/6);
+        marks = marks + 100/6;
     }
     else{
         allCards[op1.id].src="https://static.vecteezy.com/system/resources/previews/007/126/739/non_2x/question-mark-icon-free-vector.jpg"
@@ -92,7 +93,7 @@ function checkMatch(){
 }
 
 function dispMarks(){
-    final=marks+"%"
-    const markH3 = document.getElementsByClassName("marks");
+    final=Math.round(marks)+"%"
+    const markH3 = document.getElementById("marks");
     markH3.innerText=final;
 }

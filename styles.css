@@ -9,17 +9,63 @@ body, html {
 .container {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; 
 }
 
 #grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px;
 }
 
-#grid img{
-    width: 150px;
-    height: 150px;
-    border:2px solid black;
+#grid img {
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
     padding: 10px;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
+}
+
+#grid img:hover {
+    transform: scale(1.02);
+    transition-duration: 200ms;
+    border: 2px solid rgb(0, 113, 79);
+}
+
+#grid img.matched {
+    transform: rotateY(360deg);
+    transition-duration: 500ms;
+    border: 2px solid transparent;
+}
+
+#marks {
+    margin-top: 20px;
+    font-size: 32px;
+    color: rgb(0, 199, 139);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.button-container {
+    margin-bottom: 20px;
+}
+
+#startButton, #restartButton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+}
+
+#startButton:hover, #restartButton:hover {
+    background-color: #45a049;
 }

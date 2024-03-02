@@ -81,10 +81,11 @@ let cardsChoosed = [];
 
 function flipCard() {
     const cardId = this.getAttribute("data-id");
+    if (this.classList.contains("matched")) return; // Disable clicking on matched cards
     this.setAttribute("src", imageArray[cardId].url);
-    if (cardsChoosed.length === 1 && cardsChoosed[0].id === cardId) return; // Prevent clicking the same card
+    if (cardsChoosed.length === 1 && cardsChoosed[0].id === cardId) return; 
     cardsChoosed.push({ ...imageArray[cardId], id: cardId });
-    marks -= 50; // Reduce 50 marks when clicking any tile
+    marks -= 50;
     dispMarks();
     if (cardsChoosed.length === 2) {
         setTimeout(checkMatch, 500);
@@ -98,9 +99,10 @@ function checkMatch() {
     if (op1.name === op2.name) {
         allCards[op1.id].src = "https://icons.veryicon.com/png/o/miscellaneous/logo-design-of-lingzhuyun/icon-correct-24.png";
         allCards[op2.id].src = "https://icons.veryicon.com/png/o/miscellaneous/logo-design-of-lingzhuyun/icon-correct-24.png";
-        marks += 100; // Add 100 marks when matching two tiles
+        marks += 100; 
         allCards[op1.id].classList.add("matched");
         allCards[op2.id].classList.add("matched");
+        
     } else {
         allCards[op1.id].src = "https://static.vecteezy.com/system/resources/previews/007/126/739/non_2x/question-mark-icon-free-vector.jpg";
         allCards[op2.id].src = "https://static.vecteezy.com/system/resources/previews/007/126/739/non_2x/question-mark-icon-free-vector.jpg";
@@ -111,6 +113,7 @@ function checkMatch() {
             allCards[op2.id].classList.remove("not-matched");
         }, 1000);
     }
+
     cardsChoosed = [];
     dispMarks();
     if (checkWin()) {
